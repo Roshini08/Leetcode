@@ -12,3 +12,50 @@ class Solution {
         }
     }
 }
+
+#069 my sqrt
+public class Solution {
+    public int mySqrt(int x) {
+        if (x < 2) return x;
+
+        int left = 1, right = x / 2, ans = 0;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            
+            if ((long)mid * mid == x) {
+                return mid;
+            } else if ((long)mid * mid < x) {
+                ans = mid;        // store the floor of sqrt
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        return ans;
+    }
+}
+
+
+#88 question merge sort
+public class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int i = m - 1;          
+        int j = n - 1;           
+        int k = m + n - 1;    
+
+        while (i >= 0 && j >= 0) {
+            if (nums1[i] > nums2[j]) {
+                nums1[k--] = nums1[i--];
+            } else {
+                nums1[k--] = nums2[j--];
+            }
+        }
+
+        // If any elements are left in nums2 (nums1's left part is already in place)
+        while (j >= 0) {
+            nums1[k--] = nums2[j--];
+        }
+    }
+}
